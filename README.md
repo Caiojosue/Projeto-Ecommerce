@@ -14,6 +14,19 @@ EcommerceVue é uma aplicação web moderna para lojas virtuais de tecnologia, c
   - Avaliações dos usuários  
   - Informações de estoque atualizadas  
 
+
+## 📸 Prints das Telas
+
+### Página Inicial
+![Página Inicial](https://github.com/Caiojosue/imagens/blob/main/Screenshot%202025-06-03%20at%2017.41.33.png)
+
+### Listagem de Produtos
+![Listagem de Produtos](https://github.com/Caiojosue/imagens/blob/main/Screenshot%202025-06-03%20at%2017.41.42.png)
+
+### Detalhes do Produto
+![Detalhes do Produto](https://github.com/Caiojosue/imagens/blob/main/Screenshot%202025-06-03%20at%2017.41.26.png)
+
+
 ## Como Rodar o Projeto
 
 ### Requisitos
