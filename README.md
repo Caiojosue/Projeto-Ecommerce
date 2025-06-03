@@ -71,6 +71,6 @@ Crie um Pull Request
 
 ## 🧑‍💻 Autor
 
-Caio Sando
+Caio Sando & Cesar Augusto
 
 
