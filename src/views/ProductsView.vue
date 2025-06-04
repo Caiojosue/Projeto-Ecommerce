@@ -41,10 +41,15 @@ import ProductGridComponent from '../components/ProductGridComponent.vue'
 
 const route = useRoute()
 
-const categoryTitle = computed(() => {
-    const category = route.params.category
-    return category
-        ? category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')
-        : 'Todos os Produtos'
-})
+// Função helper para formatar título
+const formatTitle = (category) => {
+  if (!category) return 'Todos os Produtos'
+  
+  return category
+    .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
+
+const categoryTitle = computed(() => formatTitle(route.params.category))
 </script>

@@ -143,7 +143,7 @@ export default {
 
         this.products = data.products || []
       } catch (error) {
-        console.error('Failed to load products:', error)
+        console.error('Erro ao carregar os produtos:', error)
       } finally {
         this.loading = false
       }

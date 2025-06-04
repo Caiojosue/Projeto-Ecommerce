@@ -88,68 +88,93 @@ const props = defineProps({
   }
 })
 
-const products = ref([])
-const loading = ref(true)
-const error = ref(null)
-const currentPage = ref(1)
-const itemsPerPage = 20
+function useProducts(category) {
+  const products = ref([])
+  const loading = ref(true)
+  const error = ref(null)
 
-const totalPages = computed(() =>
-  Math.ceil(products.value.length / itemsPerPage)
-)
+  const fetchProducts = async (cat) => {
+    loading.value = true
+    error.value = null
 
-const currentProducts = computed(() => {
-  const start = (currentPage.value - 1) * itemsPerPage
-  const end = start + itemsPerPage
-  return products.value.slice(start, end)
+    try {
+      const baseUrl = 'https://dummyjson.com/products'
+      const url = cat ? `${baseUrl}/category/${cat}` : `${baseUrl}?limit=300`
+
+      const res = await fetch(url)
+      if (!res.ok) throw new Error('Não possível carregar o produto')
+
+      const data = await res.json()
+      products.value = data.products
+    } catch (err) {
+      console.error(err)
+      error.value = 'Erro ao carregar os produtos'
+      products.value = []
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return { products, loading, error, fetchProducts }
+}
+
+function usePagination(items, itemsPerPage = 20) {
+  const currentPage = ref(1)
+
+  const totalPages = computed(() =>
+    Math.ceil(items.value.length / itemsPerPage)
+  )
+
+  const currentItems = computed(() => {
+    const start = (currentPage.value - 1) * itemsPerPage
+    const end = start + itemsPerPage
+    return items.value.slice(start, end)
+  })
+
+  const nextPage = () => {
+    if (currentPage.value < totalPages.value) {
+      currentPage.value++
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const prevPage = () => {
+    if (currentPage.value > 1) {
+      currentPage.value--
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+    }
+  }
+
+  const resetPage = () => {
+    currentPage.value = 1
+  }
+
+  return {
+    currentPage,
+    totalPages,
+    currentItems,
+    nextPage,
+    prevPage,
+    resetPage
+  }
+}
+
+const { products, loading, error, fetchProducts } = useProducts()
+const { 
+  currentPage, 
+  totalPages, 
+  currentItems: currentProducts, 
+  nextPage, 
+  prevPage, 
+  resetPage 
+} = usePagination(products)
+
+watch(() => props.category, async (newCategory) => {
+  await fetchProducts(newCategory)
+  resetPage()
 })
 
-const fetchProducts = async () => {
-  loading.value = true
-  error.value = null
-
-  try {
-    const baseUrl = 'https://dummyjson.com/products'
-    const url = props.category
-      ? `${baseUrl}/category/${props.category}`
-      : `${baseUrl}?limit=300`
-
-    const res = await fetch(url)
-
-    if (!res.ok) throw new Error('Não possivel carregar o produto')
-
-    const data = await res.json()
-    products.value = data.products
-    currentPage.value = 1
-
-  } catch (err) {
-    console.error(err)
-    error.value = 'Erro ao carregar os produtos'
-    products.value = []
-
-  } finally {
-    loading.value = false
-  }
-}
-
-watch(() => props.category, fetchProducts)
-onMounted(fetchProducts)
-
-const nextPage = () => {
-  if (currentPage.value < totalPages.value) {
-    currentPage.value++
-    scrollToTop()
-  }
-}
-
-const prevPage = () => {
-  if (currentPage.value > 1) {
-    currentPage.value--
-    scrollToTop()
-  }
-}
-
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
+onMounted(() => {
+  fetchProducts(props.category)
+})
 </script>

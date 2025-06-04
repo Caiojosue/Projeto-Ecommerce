@@ -151,7 +151,6 @@ import { useRoute, RouterLink } from 'vue-router'
 const route = useRoute()
 const product = ref({})
 const loading = ref(true)
-const error = ref(null)
 const selectedImage = ref(null)
 
 onMounted(async () => {

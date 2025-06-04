@@ -60,8 +60,7 @@
 
       <RouterLink
         to="/contato"
-        class="block py-2 px-4 rounded hover:bg-sky-400/10 transition-colors"
-        >Contato</RouterLink>
+        class="block py-2 px-4 rounded hover:bg-sky-400/10 transition-colors">Contato</RouterLink>
     </nav>
   </div>
 </template>
