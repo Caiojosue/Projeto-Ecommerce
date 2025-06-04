@@ -1,7 +1,7 @@
 # EcommerceVue - Plataforma de E-commerce de Tecnologia
 
 ## 🖥️ Sobre o Projeto
-EcommerceVue é uma aplicação web moderna para lojas virtuais de tecnologia, construída com Vue.js e Tailwind CSS. O objetivo é oferecer uma experiência de compra simples, rápida e acessível em qualquer dispositivo.
+EcommerceVue é uma aplicação web moderna para lojas virtuais de tecnologia, construída com Vue.js e Tailwind. O objetivo é oferecer uma experiência de compra simples, rápida e acessível em qualquer dispositivo.
 
 ## 🎯 Funcionalidades Principais
 - **Página Inicial** com produtos em destaque e promoções especiais  
