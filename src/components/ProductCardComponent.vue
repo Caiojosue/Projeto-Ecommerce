@@ -40,7 +40,6 @@
             </h3>
             <div class="flex items-center justify-between">
               <p class="text-2xl font-bold text-green-600">${{ product.price }}</p>
-              <div class="flex text-yellow-400"></div>
             </div>
           </div>
         </router-link>

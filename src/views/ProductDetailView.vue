@@ -109,6 +109,9 @@
               </div>
             </div>
 
+
+            
+
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
               <button class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
                 Comprar Agora
@@ -143,17 +146,20 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
+import axios from 'axios'
 
 const route = useRoute()
 const product = ref({})
 const loading = ref(true)
 const selectedImage = ref(null)
+const error = ref(null)
 
 onMounted(async () => {
   try {
-    const response = await fetch(`https://dummyjson.com/products/${route.params.id}`)
-    if (!response.ok) throw new Error('O Produto não foi encontrado')
-    product.value = await response.json()
+    const response = await axios.get(`https://dummyjson.com/products/${route.params.id}`)
+    product.value = response.data
+  } catch (err) {
+    error.value = 'O Produto não foi encontrado'
   } finally {
     loading.value = false
   }

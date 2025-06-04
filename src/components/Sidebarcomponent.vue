@@ -44,8 +44,8 @@
           <RouterLink
             v-else
             v-for="category in categories"
-            :key="category.slug || category.name || category"
-            :to="`/produtos/${category.slug || category.name || category}`"
+            :key="category.name || category"
+            :to="`/produtos/${category.name || category}`"
             class="block py-2 px-4 text-sm rounded hover:bg-sky-400/10 transition-colors border-l-2 border-transparent hover:border-sky-400">
             {{ formatCategoryName(category) }}
           </RouterLink>
@@ -87,9 +87,6 @@ const fetchCategories = async () => {
       if (typeof categoria === "string") {
         return {
           name: categoria
-            .split("-")
-            .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" "),
         };
       } else if (typeof categoria === "object" && categoria !== null) {
         return {
@@ -117,9 +114,6 @@ const formatCategoryName = (category) => {
   if (!category) return "";
   if (typeof category === "string") {
     return category
-      .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
   }
   if (typeof category === "object" && category.name) {
     return category.name;
