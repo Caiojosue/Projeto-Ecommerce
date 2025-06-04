@@ -83,10 +83,6 @@
             <h1 class="text-3xl lg:text-4xl font-bold mb-6 text-gray-900 leading-tight">{{ product.title }}</h1>
 
             <div class="flex items-center mb-6">
-              <div class="flex text-yellow-400 mr-3">
-                <span v-for="i in Math.floor(product.rating || 0)"></span>
-                <span v-for="i in (5 - Math.floor(product.rating || 0))"></span>
-              </div>
               <span class="text-gray-600 font-medium">({{ product.rating || 0 }}) • {{ product.reviews?.length || 0 }} avaliações</span>
             </div>
 

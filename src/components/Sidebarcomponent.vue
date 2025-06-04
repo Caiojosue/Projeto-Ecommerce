@@ -83,23 +83,20 @@ const fetchCategories = async () => {
     const data = await response.json();
     console.log("Dados da API:", data);
 
-    categories.value = data.map((cat) => {
-      if (typeof cat === "string") {
+    categories.value = data.map((categoria) => {
+      if (typeof categoria === "string") {
         return {
-          slug: cat,
-          name: cat
+          name: categoria
             .split("-")
             .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
             .join(" "),
         };
-      } else if (typeof cat === "object" && cat !== null) {
+      } else if (typeof categoria === "object" && categoria !== null) {
         return {
-          slug: cat.slug || "",
-          name: cat.name || "",
+          name: categoria.name || ""
         };
       } else {
         return {
-          slug: "",
           name: "",
         };
       }

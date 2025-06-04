@@ -18,18 +18,15 @@
           v-for="product in displayedProducts"
           :key="product.id"
           :to="{ name: 'ProductDetail', params: { id: product.id } }"
-          class="flex-shrink-0 w-72 bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 block group"
-        >
+          class="flex-shrink-0 w-72 bg-white rounded-2xl shadow-lg overflow-hidden hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 block group">
           <div class="aspect-square relative overflow-hidden">
             <img
               :src="product.thumbnail"
               :alt="product.title"
-              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"/>
             <div
               v-if="showDiscount && product.discountPercentage"
-              class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold"
-            >
+              class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
               -{{ Math.round(product.discountPercentage) }}%
             </div>
           </div>
@@ -38,8 +35,7 @@
               {{ product.category }}
             </div>
             <h3
-              class="font-bold text-gray-800 text-lg mb-3 line-clamp-2 group-hover:text-purple-600 transition-colors"
-            >
+              class="font-bold text-gray-800 text-lg mb-3 line-clamp-2 group-hover:text-purple-600 transition-colors">
               {{ product.title }}
             </h3>
             <div class="flex items-center justify-between">
@@ -54,15 +50,13 @@
     <button
       @click="goPrev"
       class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-xl hover:bg-white z-10 transition-all duration-200 hover:scale-110"
-      :class="{ 'opacity-50 cursor-not-allowed': currentPage === 0 }"
-    >
+      :class="{ 'opacity-50 cursor-not-allowed': currentPage === 0 }">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6 text-gray-700"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
+        stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
     </button>
@@ -70,15 +64,13 @@
     <button
       @click="goNext"
       class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm p-3 rounded-full shadow-xl hover:bg-white z-10 transition-all duration-200 hover:scale-110"
-      :class="{ 'opacity-50 cursor-not-allowed': !canGoNext }"
-    >
+      :class="{ 'opacity-50 cursor-not-allowed': !canGoNext }">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="h-6 w-6 text-gray-700"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
+        stroke="currentColor"g>
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
     </button>

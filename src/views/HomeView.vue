@@ -60,7 +60,7 @@ import ProductCardComponent from '../components/ProductCardComponent.vue'
         <div class="bg-white rounded-3xl p-8 md:p-12 shadow-lg">
           <ProductCardComponent 
             title="Produtos com Ofertas Imperdíveis" 
-            apiUrl="https://dummyjson.com/products?limit=100&skip=10&sort=price"/>
+            apiUrl="https://dummyjson.com/products?limit=300&skip=10&sort=price"/>
         </div>
 
         <div class="grid md:grid-cols-3 gap-8 mt-16">
