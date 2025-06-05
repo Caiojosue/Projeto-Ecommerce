@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="fixed top-0 left-0 w-64 h-full bg-white text-black shadow-lg flex flex-col">
-    <div
-      class="p-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white flex justify-center">
+  <div class="fixed top-0 left-0 w-64 h-full bg-white text-black shadow-lg flex flex-col">
+    <div class="p-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white flex justify-center">
       <h1 class="text-xl font-bold">Ecommerce vue</h1>
     </div>
 
@@ -31,18 +29,15 @@
           </svg>
         </button>
 
-        <div
-          v-if="sidebar"
-          class="ml-4 mt-2 space-y-1 border-l-2 border-sky-400/30 max-h-96 overflow-y-auto">
+        <div v-if="sidebar" class="ml-4 mt-2 space-y-1 border-l-2 border-sky-400/30 max-h-96 overflow-y-auto">
           <div v-if="loading" class="py-2 px-4 text-gray-500">
             Carregando categorias...
           </div>
-          <div v-else-if="error" class="py-2 px-4 text-red-600">
-            Erro ao carregar categorias.
+          <div v-if="error" class="py-2 px-4 text-red-600">
+            Erro ao carregar categorias. Tente novamente.
           </div>
 
           <RouterLink
-            v-else
             v-for="category in categories"
             :key="category.slug || category.name || category"
             :to="`/produtos/${category.slug || category.name || category}`"
@@ -50,9 +45,7 @@
             {{ formatCategoryName(category) }}
           </RouterLink>
 
-          <div
-            v-if="!loading && !error && categories.length === 0"
-            class="py-2 px-4 text-gray-500">
+          <div v-if="!loading && !error && categories.length === 0" class="py-2 px-4 text-gray-500">
             Nenhuma categoria encontrada.
           </div>
         </div>
@@ -87,20 +80,23 @@ const fetchCategories = async () => {
       if (typeof categoria === "string") {
         return {
           name: categoria
-          .split("-")
+            .split("-")
             .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
             .join(" "),
+          slug: categoria.toLowerCase().replace(/\s+/g, "-"),
         };
       } else if (typeof categoria === "object" && categoria !== null) {
         return {
-          name: categoria.name || ""
+          name: categoria.name || "Categoria desconhecida",
+          slug: categoria.slug || categoria.name.toLowerCase().replace(/\s+/g, "-"),
         };
       } else {
-        return {
-          name: "",
-        };
+        return { name: "Categoria inválida", slug: "" };
       }
     });
+
+    console.log("Categorias após mapeamento:", categories.value);
+
   } catch (err) {
     console.error("Erro ao carregar categorias:", err);
     error.value = true;
@@ -115,15 +111,6 @@ onMounted(() => {
 
 const formatCategoryName = (category) => {
   if (!category) return "";
-  if (typeof category === "string") {
-    return category
-    .split("-")
-      .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(" ");
-  }
-  if (typeof category === "object" && category.name) {
-    return category.name;
-  }
-  return "";
+  return category.name || category;
 };
 </script>
