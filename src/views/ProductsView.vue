@@ -29,7 +29,7 @@
                 </ol>
             </nav>
 
-            <ProductGridComponent :key="$route.params.category" :category="$route.params.category" />
+            <ProductGridComponent :category="$route.params.category" />
         </div>
     </div>
 </template>

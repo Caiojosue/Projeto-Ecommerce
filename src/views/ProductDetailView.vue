@@ -109,9 +109,6 @@
               </div>
             </div>
 
-
-            
-
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
               <button class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white py-4 px-8 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all duration-200 transform hover:scale-105 shadow-lg">
                 Comprar Agora
