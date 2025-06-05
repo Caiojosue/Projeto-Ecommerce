@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import Navbar from './components/NavbarComponent.vue'
 import Sidebarcomponent from './components/Sidebarcomponent.vue'
+import Footer from './components/FooterComponent.vue'
 
 const isSidebarVisible = ref(false)
 

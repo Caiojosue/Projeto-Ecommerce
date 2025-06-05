@@ -29,7 +29,7 @@
                 </ol>
             </nav>
 
-            <ProductGridComponent :category="$route.params.category" />
+            <ProductGridComponent :key="$route.params.category" :category="$route.params.category" />
         </div>
     </div>
 </template>
@@ -44,7 +44,9 @@ const route = useRoute()
 const formatTitle = (category) => {
   if (!category) return 'Todos os Produtos'
   return category
+  .split('-')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
 }
-
 const categoryTitle = computed(() => formatTitle(route.params.category))
 </script>

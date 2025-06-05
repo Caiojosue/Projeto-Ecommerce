@@ -15,23 +15,23 @@ const router = createRouter({
     {
       path: '/produtos',
       name: 'produtos',
-      component: ProductsView
-    },
+      component: () => import('../views/ProductsView.vue')    },
     {
       path: '/produtos/:category',
       name: 'category',
-      component: ProductsView
+      component: () => import('../views/ProductsView.vue'),
+      props: true
     },
     {
       path: '/produtos/item/:id',
       name: 'ProductDetail',
-      component: ProductDetailView
-    },
+      component: () => import('../views/ProductDetailView.vue'),
+      props: true    },
     {
       path: '/contato',
       name: 'contact',
-      component: ContactView
-
+      component: () => import('../views/ContactView.vue'),
+      props: true
     }
   ]
 })
