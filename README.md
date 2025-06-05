@@ -15,6 +15,13 @@ EcommerceVue é uma aplicação web moderna para lojas virtuais de tecnologia, c
   - Informações de estoque atualizadas  
 
 
+## ❗️ Para mais Informações:
+
+- Link do Video para o Youtube Sobre o Projeto: 
+
+https://www.youtube.com/watch?v=SCagVkAG8co
+
+
 ## 📸 Prints das Telas
 
 ### Página Inicial
